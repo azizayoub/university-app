@@ -1,37 +1,78 @@
 .App-header {
-  padding: 38px 20px 30px;
-  border-bottom: 1px solid var(--color-border);
-  background: rgba(255, 255, 255, 0.72);
+  display: flex;
+  min-height: 280px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px 56px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(119, 184, 146, 0.18), transparent 65%),
+    #f7faf7;
   text-align: center;
+  scroll-margin-top: 82px;
+}
+
+.header-eyebrow {
+  margin: 0 0 14px;
+  color: #39785e;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.13em;
 }
 
 .App-header h1 {
-  margin: 0 0 20px;
-  color: var(--color-ink);
-  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  max-width: 760px;
+  margin: 0;
+  color: #18372b;
+  font-size: clamp(2.1rem, 6vw, 4rem);
   font-weight: 750;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
 }
 
-.App-header h2 {
-  display: flex;
-  flex-wrap: wrap;
+.header-description {
+  max-width: 540px;
+  margin: 18px 0 26px;
+  color: #64756c;
+  font-size: clamp(1rem, 2vw, 1.12rem);
+  line-height: 1.6;
+}
+
+.header-action {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.App-header a {
-  padding: 8px 14px;
+  padding: 0 20px;
   border-radius: 999px;
-  color: var(--color-muted);
+  background: #236b4e;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 650;
   text-decoration: none;
-  transition: color 160ms ease, background-color 160ms ease;
+  transition: background-color 160ms ease, transform 160ms ease;
 }
 
-.App-header a:hover {
-  background: #e7f2eb;
-  color: var(--color-accent-dark);
+.header-action:hover {
+  transform: translateY(-2px);
+  background: #194f39;
+}
+
+.header-action:focus-visible {
+  outline: 3px solid #92c9a7;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .App-header {
+    min-height: 250px;
+    padding: 52px 22px 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-action {
+    transition: none;
+  }
 }

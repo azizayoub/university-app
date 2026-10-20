@@ -2,7 +2,7 @@ import "./Footer.css"
 
 function Footer() {
   return (
-    <footer>
+    <footer id="contact">
       <p>&copy; 2023 University App. All rights reserved.</p>
     </footer>
   );

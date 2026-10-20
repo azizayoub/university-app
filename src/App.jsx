@@ -1,6 +1,9 @@
 import './App.css'
 import StudentCard from "./components/StudentCard.jsx";
 import photo from "./assets/hero.png"
+import Header from "./components/Header.jsx"
+import Navbar from "./components/NavBar.jsx"
+import Footer from "./components/Footer.jsx"
 const etudiants = [
   {
           prenom:"Aziz",
@@ -48,6 +51,9 @@ const etudiants = [
 function App() {
   return (
     <div className="student-grid">
+      <Header />
+      <Navbar />
+      <section className="student-list" id="students" aria-label="Liste des étudiants">
       {etudiants.map((student) => (<StudentCard
           prenom={student.prenom}
           nom={student.nom}
@@ -59,6 +65,8 @@ function App() {
           groupe={student.groupe}
           ville={student.ville}
           image={student.image} />))}
+      </section>
+        <Footer />
     </div>
   )
 }
