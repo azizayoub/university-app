@@ -4,7 +4,11 @@ import photo from "./assets/hero.png"
 import Header from "./components/Header.jsx"
 import Navbar from "./components/NavBar.jsx"
 import Footer from "./components/Footer.jsx"
-const etudiants = [
+import { useState } from 'react';
+
+function App() {
+
+  const [etudiants,setEtudiants ] = useState( [
   {
           prenom:"Aziz",
           nom:"Ayoub",
@@ -47,8 +51,25 @@ const etudiants = [
         groupe: "GLSI 2",
         ville: "Mahdia",
     }
-];
-function App() {
+]);
+function addStudent() {
+    const nouvelEtudiant = {
+        nom: "Ben Salem",
+        prenom: "Yassine",
+        email: "yassine.bensalem@gmail.com",
+        telephone: "+216 44 444 444",
+        filiere: "Génie Logiciel et Systèmes d'Information",
+        anneeEtude: "2ème année",
+        groupe: "GLSI 1",
+        ville: "Sfax",
+        // image: SlimImage,
+    };
+    setEtudiants([...etudiants, nouvelEtudiant]);
+}
+  const [students,supp]=useState(etudiants)
+function supprimerEtudiant(){
+
+}
   return (
     <div className="student-grid">
       <Header />
@@ -57,14 +78,16 @@ function App() {
       {etudiants.map((student) => (<StudentCard
           prenom={student.prenom}
           nom={student.nom}
-          key={student.email}
           email={student.email}
+          key={student.email}
           telephone={student.telephone}
           filiere={student.filiere}
           anne={student.anne}
           groupe={student.groupe}
           ville={student.ville}
           image={student.image} />))}
+        <button onClick={addStudent}>Ajouter un etudient</button>
+        <button onClick={supprimerEtudiant}>Supprimer un etudiant</button>
       </section>
         <Footer />
     </div>

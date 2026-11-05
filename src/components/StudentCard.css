@@ -55,7 +55,7 @@
   text-align: center;
 }
 
-.fiche strong {
+.fiche p {
   color: var(--color-ink);
   font-weight: 650;
 }
