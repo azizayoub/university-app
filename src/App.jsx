@@ -14,7 +14,7 @@ function App() {
           nom:"Ayoub",
           email : "azizayoub656@example.com",
           telephone : "00000000",
-          filiere : "Génie Logiciel et Systèmes d'Information",
+          filiere : "Glsi",
           anne : "2ème année",
           groupe : "GLSI 2",
           ville : "Mahdia",
@@ -24,7 +24,7 @@ function App() {
         nom: "Boubaker",
         email: "slimboubaker@gmail.com",
         telephone: "+216 99 999 999",
-        filiere: "Génie Logiciel et Systèmes d'Information",
+        filiere: "Irs",
         anne: "2ème année",
         groupe: "GLSI 2",
         ville: "Mahdia",
@@ -35,7 +35,7 @@ function App() {
         nom: "Trabelsi",
         email: "sarra.trabelsi@gmail.com",
         telephone: "+216 22 345 678",
-        filiere: "Génie Logiciel et Systèmes d'Information",
+        filiere: "Glsi",
         anne: "2ème année",
         groupe: "GLSI 1",
         ville: "Sousse",
@@ -46,7 +46,7 @@ function App() {
         nom: "Khalfellah",
         email: "mariem.khalfellah@gmail.com",
         telephone: "+216 27 567 890",
-        filiere: "Génie Logiciel et Systèmes d'Information",
+        filiere: "Iot",
         anne: "2ème année",
         groupe: "GLSI 2",
         ville: "Mahdia",
@@ -54,11 +54,11 @@ function App() {
 ]);
 function addStudent() {
     const nouvelEtudiant = {
-        nom: "Ben Salem",
         prenom: "Yassine",
+        nom: "Ben Salem",
         email: "yassine.bensalem@gmail.com",
         telephone: "+216 44 444 444",
-        filiere: "Génie Logiciel et Systèmes d'Information",
+        filiere: "Iot",
         anneeEtude: "2ème année",
         groupe: "GLSI 1",
         ville: "Sfax",
@@ -66,16 +66,31 @@ function addStudent() {
     };
     setEtudiants([...etudiants, nouvelEtudiant]);
 }
-  const [students,supp]=useState(etudiants)
-function supprimerEtudiant(){
-
+function supprimerEtudiant(email){
+  setEtudiants(etudiants.filter((student)=>student.email!==email));
 }
+function modifEtudiants(email){
+    const nouveauPrenom=prompt("Saisir le nouveau prenom: ")
+    if(nouveauPrenom!==null && nouveauPrenom.trim()!==""){
+      setEtudiants((anciensEtudiants)=>{
+        return anciensEtudiants.map((etudiant) => etudiant.email===email
+          ?{...etudiant,prenom:nouveauPrenom.trim()}
+          : etudiant)
+      })
+          }
+        
+    }
+  const [recherche,setRecherche]=useState("")
+  const etudiantsFiltres = etudiants.filter((etudiant) =>
+    etudiant.filiere.toLowerCase().includes(recherche.toLowerCase())
+  )
   return (
     <div className="student-grid">
       <Header />
       <Navbar />
       <section className="student-list" id="students" aria-label="Liste des étudiants">
-      {etudiants.map((student) => (<StudentCard
+        <input type="text" placeholder='Rechercher par filière...' value={recherche} onChange={(e)=>setRecherche(e.target.value)} />
+      {etudiantsFiltres.map((student) => (<StudentCard
           prenom={student.prenom}
           nom={student.nom}
           email={student.email}
@@ -85,14 +100,18 @@ function supprimerEtudiant(){
           anne={student.anne}
           groupe={student.groupe}
           ville={student.ville}
-          image={student.image} />))}
-        <button onClick={addStudent}>Ajouter un etudient</button>
-        <button onClick={supprimerEtudiant}>Supprimer un etudiant</button>
+          image={student.image}
+          onSupprimer={supprimerEtudiant}
+          onModifier={modifEtudiants}
+        />))}
+        <button onClick={addStudent}>Ajouter un etudiant</button>
+        
       </section>
         <Footer />
     </div>
   )
-}
+  }
+
 
 
 export default App

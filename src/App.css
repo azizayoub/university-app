@@ -182,3 +182,41 @@
     border-right-color: var(--border);
   }
 }
+
+.student-list > input {
+  box-sizing: border-box;
+  width: min(100%, 420px);
+  margin: 0 0 20px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5cf;
+  border-radius: 8px;
+  background: #fff;
+  color: #26352d;
+  font: inherit;
+}
+
+.student-list > input:focus {
+  border-color: #187c68;
+  outline: 2px solid rgba(24, 124, 104, 0.18);
+}
+
+.student-list > button {
+  margin: 16px;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #187c68;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.student-list > button:hover {
+  background: #126653;
+}
+
+.student-list > button:focus-visible {
+  outline: 3px solid rgba(24, 124, 104, 0.35);
+  outline-offset: 2px;
+}
