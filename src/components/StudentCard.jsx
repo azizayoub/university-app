@@ -13,7 +13,6 @@ function StudentCard(props) {
       <div className="fiche">
         <img src={photo} alt="photo d'etudiant" />
         <h1>Fiche étudiant</h1>  
-
         <p>Nom  : {props.nom} </p>
         <p>Prénom  : {props.prenom} </p>
                 {coordonneesVisibles && (
@@ -23,7 +22,7 @@ function StudentCard(props) {
         </>
         )}
         <p>Filière : {props.filiere}</p>
-        <p>Année d'étude : {props.anne}</p>
+        <p>Année d'étude : {props.anneeEtude}</p>
         <p>Groupe : {props.groupe}</p>
         <p>Ville : {props.ville}</p>
         <a href={`mailto:${props.email}`} className="btn-contact">

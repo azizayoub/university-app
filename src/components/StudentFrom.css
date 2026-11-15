@@ -1,0 +1,93 @@
+.student-form {
+  width: min(100% - 32px, 640px);
+  box-sizing: border-box;
+  margin: 32px auto;
+  padding: 28px;
+  border: 1px solid #dce8df;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(32, 58, 48, 0.1);
+  color: #26352d;
+  text-align: left;
+}
+
+.student-form h1 {
+  margin: 0 0 24px;
+  color: #176b5b;
+  font-size: clamp(1.6rem, 5vw, 2rem);
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.student-form > div:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.student-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #33483b;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.student-form input,
+.student-form select {
+  width: 100%;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cbd9ce;
+  border-radius: 8px;
+  background: #fff;
+  color: #26352d;
+  font: inherit;
+}
+
+.student-form input[type="file"] {
+  padding: 7px;
+}
+
+.student-form input:focus,
+.student-form select:focus {
+  border-color: #187c68;
+  outline: 3px solid rgba(24, 124, 104, 0.16);
+}
+
+.student-form button {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 6px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #187c68;
+  color: #fff;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.student-form button:hover {
+  background: #126653;
+}
+
+.student-form button:focus-visible {
+  outline: 3px solid rgba(24, 124, 104, 0.35);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .student-form {
+    width: calc(100% - 24px);
+    margin: 24px auto;
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .student-form button {
+    transition: none;
+  }
+}
