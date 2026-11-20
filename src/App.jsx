@@ -10,6 +10,7 @@ function App() {
 
   const [etudiants,setEtudiants ] = useState( [
   {
+          id: 1,
           prenom:"Aziz",
           nom:"Ayoub",
           email : "azizayoub656@example.com",
@@ -20,6 +21,7 @@ function App() {
           ville : "Mahdia",
           image: photo},
     {
+        id: 2,
         prenom: "Slim",
         nom: "Boubaker",
         email: "slimboubaker@gmail.com",
@@ -31,6 +33,7 @@ function App() {
     },
 
     {
+        id: 3,
         prenom: "Sarra",
         nom: "Trabelsi",
         email: "sarra.trabelsi@gmail.com",
@@ -42,6 +45,7 @@ function App() {
     },
 
     {
+        id: 4,
         prenom: "Mariem",
         nom: "Khalfellah",
         email: "mariem.khalfellah@gmail.com",
@@ -52,34 +56,14 @@ function App() {
         ville: "Mahdia",
     }
 ]);
-function addStudent() {
-    const nouvelEtudiant = {
-        prenom: "Yassine",
-        nom: "Ben Salem",
-        email: "yassine.bensalem@gmail.com",
-        telephone: "+216 44 444 444",
-        filiere: "Iot",
-        anneeEtudeeEtude: "2ème année",
-        groupe: "GLSI 1",
-        ville: "Sfax",
-        // image: SlimImage,
-    };
-    setEtudiants([...etudiants, nouvelEtudiant]);
-}
 function supprimerEtudiant(email){
   setEtudiants(etudiants.filter((student)=>student.email!==email));
 }
-function modifEtudiants(email){
-    const nouveauPrenom=prompt("Saisir le nouveau prenom: ")
-    if(nouveauPrenom!==null && nouveauPrenom.trim()!==""){
-      setEtudiants((anciensEtudiants)=>{
-        return anciensEtudiants.map((etudiant) => etudiant.email===email
-          ?{...etudiant,prenom:nouveauPrenom.trim()}
-          : etudiant)
-      })
-          }
-        
-    }
+const [etudiantAModifier,setEtudiantAModifier]=useState(null);
+function modifEtudiants(etudiant){
+    setEtudiantAModifier(etudiant)
+    console.log(etudiant);
+        }
   const [recherche,setRecherche]=useState("")
   const etudiantsFiltres = etudiants.filter((etudiant) =>
     etudiant.filiere.toLowerCase().includes(recherche.toLowerCase())
@@ -92,12 +76,25 @@ function ajouterEtudiant(nouvelEtudiant) {
 
     setEtudiants((anciensEtudiants) => [...anciensEtudiants, etudiantAvecId]);
     }
+function enregistrerModification(etudiantModifie) {
+  setEtudiants((anciensEtudiants) =>
+    anciensEtudiants.map((etudiant) =>
+      etudiant.id === etudiantAModifier.id
+        ? { ...etudiantModifie, id: etudiant.id }
+        : etudiant
+    )
+  );
+  setEtudiantAModifier(null);
+}
   return (
     <div className="student-grid">
       <Header />
       <Navbar />
       <StudentForm 
+      key={etudiantAModifier ? etudiantAModifier.id : "nouveau"}
       onAjouterEtudiant={ajouterEtudiant}
+      etudiantAModifier={etudiantAModifier}
+      onModifierEtudiant={enregistrerModification}
       />
       <section className="student-list" id="students" aria-label="Liste des étudiants">
         <input type="text" placeholder='Rechercher par filière...' value={recherche} onChange={(e)=>setRecherche(e.target.value)} />
@@ -105,18 +102,17 @@ function ajouterEtudiant(nouvelEtudiant) {
           prenom={student.prenom}
           nom={student.nom}
           email={student.email}
-          key={student.email}
+          key={student.id}
           telephone={student.telephone}
           filiere={student.filiere}
           anneeEtude={student.anneeEtude}
           groupe={student.groupe}
           ville={student.ville}
           image={student.image}
+          etudiant={student}
           onSupprimer={supprimerEtudiant}
           onModifier={modifEtudiants}
         />))}
-        <button onClick={addStudent}>Ajouter un etudiant</button>
-        
       </section>
       
         <Footer />

@@ -7,7 +7,7 @@ function StudentCard(props) {
     setcoordonnees(!coordonneesVisibles);
   }
   const handleSuppr = () => props.onSupprimer(props.email)
-  const handleModif=()=> props.onModifier(props.email)
+  const handleModif=()=> props.onModifier(props.etudiant)
   return (
     <div className="container">
       <div className="fiche">
